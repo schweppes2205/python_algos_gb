@@ -27,3 +27,52 @@
 Для реализации хранилища можно применить любой подход,
 который вы придумаете, например, реализовать словарь.
 """
+
+# O(1) all operations are with const
+def authentication(user_data_lst, user_pass):
+    if user_data_lst[1]["is_active"]:
+        if user_data_lst[0]["pass"] == user_pass:
+            return "activated"
+        else:
+            return "wrong pass"
+    else:
+        if user_data_lst[0]["pass"] == user_pass:
+            return "not active"
+        else:
+            return "wrong pass"
+
+# O(1)
+def activation(database, username):
+    database[username][1] = {"is_active": True}
+
+#O(N)
+def main_logic(database):
+    user_name = input("Please enter your name: ")
+    if user_name in database.keys():                                            #O(N)
+        user_pass = input("please enter your pass: ")
+        if authentication(database[user_name], user_pass) == "activated":
+            print("Successful authentication.")
+        elif authentication(database[user_name], user_pass) == "wrong pass":
+            print("Wrong pass")
+        elif authentication(database[user_name], user_pass) == "not active":
+            user_answer = input("Do you want to activate it? type yes or no: ")
+            if user_answer == "yes":
+                activation(database, user_name)
+                print(f"Now you activated: {database[user_name]}")
+            else:
+                print("no actions are done")
+    else:
+        print("no such user")
+
+
+main_logic(
+    {
+        "user_1": [{"pass": "pass_1"}, {"is_active": True}],
+        "user_2": [{"pass": "pass_2"}, {"is_active": False}],
+        "user_3": [{"pass": "pass_3"}, {"is_active": True}],
+        "user_4": [{"pass": "pass_4"}, {"is_active": True}],
+        "user_5": [{"pass": "pass_5"}, {"is_active": False}],
+        "user_6": [{"pass": "pass_6"}, {"is_active": True}],
+        "user_7": [{"pass": "pass_0"}, {"is_active": False}],
+    }
+)
