@@ -18,3 +18,19 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def task_05(begin_id):
+    result_str = ""
+    if begin_id == 127:
+        result_str = f"127 - \"{chr(127)}\""
+    else:
+        if begin_id % 10 == 2 and begin_id != 32:
+            result_str += "\n"
+            result_str += f"{begin_id} - \"{chr(begin_id)}\" {task_05(begin_id + 1)}"
+        else:
+            result_str += f"{begin_id} - \"{chr(begin_id)}\" {task_05(begin_id + 1)}"
+    return result_str
+
+
+print(task_05(32))
