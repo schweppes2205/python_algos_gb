@@ -15,3 +15,23 @@
 Введите пароль еще раз для проверки: 123
 Вы ввели правильный пароль
 """
+
+
+import hashlib
+
+user_name_original = input("Please enter your name: ")
+user_pass_original = hashlib.sha256(((input("Please enter your pass: ")) + user_name_original).encode())
+print(user_pass_original.hexdigest())
+
+user_name_second_attempt = input("Please enter your name: ")
+user_pass_second_attempt = hashlib.sha256(((input("Please enter your pass: ")) + user_name_second_attempt).encode())
+print(user_pass_second_attempt.hexdigest())
+
+if user_pass_original.hexdigest() == user_pass_second_attempt.hexdigest():
+    print("passwords are identical")
+else:
+    print("there is something wrong with the pass. Please check that username and pass are the same.")
+
+
+
+
