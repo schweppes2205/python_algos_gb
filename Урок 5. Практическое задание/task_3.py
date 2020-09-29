@@ -27,10 +27,10 @@ from collections import deque
 from timeit import Timer
 from random import randint
 
-list_ex = []
-deque_ex = deque
-for i in range(1000):
-    list_ex.append(randint(1, 1000))
+
+list_ex = [i for i in range(1000)]
+# for i in range(1000):
+#     list_ex.append(randint(1, 1000))
 deque_ex = deque(list_ex)
 
 
@@ -66,7 +66,7 @@ def experiment_2_deq():
 def experiment_3_lst():
     for j in range(100):
         k = randint(0, len(list_ex))
-        list_ex[i]
+        list_ex[j]
     return
 
 
@@ -74,7 +74,7 @@ def experiment_3_lst():
 def experiment_3_deq():
     for j in range(100):
         k = randint(0, len(deque_ex))
-        deque_ex[i]
+        deque_ex[j]
     return
 
 
